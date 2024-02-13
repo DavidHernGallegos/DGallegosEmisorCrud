@@ -1,0 +1,55 @@
+﻿
+@model ML.Emisor
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h1 class="text-center">Lista de Emisores</h1>
+    <hr />
+</div>
+<div class="p-2">
+    <a href="@Url.Action("Form", "Emisor")" class="btn btn-success">Agregar</a>
+</div>
+
+@if (Model == null)
+{
+    <div class="alert alert-warning" role="alert">
+        Ocurrio Error!
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+
+
+        <table class="table table-light table-hover" id="table">
+            <thead class="table-secondary">
+                <tr class="text-center">
+                    <th>Editar</th>
+                    <th>Id Emisor</th>
+                    <th>RFC</th>
+                    <th>Fecha</th>
+                    <th>Capital</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Emisor emisor in Model.Emisores)
+                {
+                    <tr class="text-center">
+                        <td><a href="@Url.Action("Form","Emisor", new {IdEmisor = emisor.IdEmisor } )" class="btn btn-warning">Editar</a></td>
+                        <td>@emisor.IdEmisor</td>
+                        <td>@emisor.RFC</td>
+                        <td>@emisor.FechaInicioOperacion</td>
+                        <td>@emisor.Capital</td>
+                        <td><a href="@Url.Action("Delete","Emisor", new {IdEmisor =emisor.IdEmisor} )" class="btn btn-danger">Eliminar</a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

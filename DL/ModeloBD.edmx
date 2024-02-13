@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LGallegosEmisonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Emisor">
+          <Key>
+            <PropertyRef Name="IdEmisor" />
+          </Key>
+          <Property Name="IdEmisor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RFC" Type="varchar" MaxLength="10" />
+          <Property Name="FechaInicioOperacion" Type="datetime" />
+          <Property Name="Capital" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Function Name="AddEmisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RFC" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInicioOperacion" Type="datetime" Mode="In" />
+          <Parameter Name="Capital" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmisor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllEmisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetByIdEmisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmisor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmisor" Type="int" Mode="In" />
+          <Parameter Name="RFC" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInicioOperacion" Type="datetime" Mode="In" />
+          <Parameter Name="Capital" Type="decimal" Mode="In" />
+        </Function>
+        <EntityContainer Name="LGallegosEmisonModelStoreContainer">
+          <EntitySet Name="Emisor" EntityType="Self.Emisor" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LGallegosEmisonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Emisor">
+          <Key>
+            <PropertyRef Name="IdEmisor" />
+          </Key>
+          <Property Name="IdEmisor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RFC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicioOperacion" Type="DateTime" Precision="3" />
+          <Property Name="Capital" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="LGallegosEmisonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Emisors" EntityType="Self.Emisor" />
+          <FunctionImport Name="AddEmisor">
+            <Parameter Name="RFC" Mode="In" Type="String" />
+            <Parameter Name="FechaInicioOperacion" Mode="In" Type="DateTime" />
+            <Parameter Name="Capital" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteEmisor">
+            <Parameter Name="IdEmisor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllEmisor" ReturnType="Collection(LGallegosEmisonModel.GetAllEmisor_Result)" />
+          <FunctionImport Name="GetByIdEmisor" ReturnType="Collection(LGallegosEmisonModel.GetByIdEmisor_Result)">
+            <Parameter Name="IdEmisor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateEmisor">
+            <Parameter Name="IdEmisor" Mode="In" Type="Int32" />
+            <Parameter Name="RFC" Mode="In" Type="String" />
+            <Parameter Name="FechaInicioOperacion" Mode="In" Type="DateTime" />
+            <Parameter Name="Capital" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllEmisor_Result">
+          <Property Type="Int32" Name="IdEmisor" Nullable="false" />
+          <Property Type="String" Name="RFC" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="FechaInicioOperacion" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Capital" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="GetByIdEmisor_Result">
+          <Property Type="Int32" Name="IdEmisor" Nullable="false" />
+          <Property Type="String" Name="RFC" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="FechaInicioOperacion" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Capital" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LGallegosEmisonModelStoreContainer" CdmEntityContainer="LGallegosEmisonEntities">
+          <EntitySetMapping Name="Emisors">
+            <EntityTypeMapping TypeName="LGallegosEmisonModel.Emisor">
+              <MappingFragment StoreEntitySet="Emisor">
+                <ScalarProperty Name="IdEmisor" ColumnName="IdEmisor" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="FechaInicioOperacion" ColumnName="FechaInicioOperacion" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEmisor" FunctionName="LGallegosEmisonModel.Store.AddEmisor" />
+          <FunctionImportMapping FunctionImportName="DeleteEmisor" FunctionName="LGallegosEmisonModel.Store.DeleteEmisor" />
+          <FunctionImportMapping FunctionImportName="GetAllEmisor" FunctionName="LGallegosEmisonModel.Store.GetAllEmisor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LGallegosEmisonModel.GetAllEmisor_Result">
+                <ScalarProperty Name="IdEmisor" ColumnName="IdEmisor" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="FechaInicioOperacion" ColumnName="FechaInicioOperacion" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetByIdEmisor" FunctionName="LGallegosEmisonModel.Store.GetByIdEmisor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LGallegosEmisonModel.GetByIdEmisor_Result">
+                <ScalarProperty Name="IdEmisor" ColumnName="IdEmisor" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="FechaInicioOperacion" ColumnName="FechaInicioOperacion" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateEmisor" FunctionName="LGallegosEmisonModel.Store.UpdateEmisor" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

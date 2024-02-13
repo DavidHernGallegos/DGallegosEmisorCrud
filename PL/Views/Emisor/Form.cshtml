@@ -1,0 +1,57 @@
+﻿@model ML.Emisor
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Form</h2>
+
+@using (Html.BeginForm("Form", "Emisor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.IdEmisor)
+
+
+    <div class="row">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.RFC)
+                @Html.TextBoxFor(model => model.RFC, new { @class = "form-control", @placeholder = "Introduce tu RFC" })
+
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.FechaInicioOperacion)
+                @Html.TextBoxFor(model => model.FechaInicioOperacion, new { @class = "form-control", @placeholder = "DD-MM-YYYY" })
+
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Capital)
+                @Html.TextBoxFor(model => model.Capital, new { @class = "form-control", @placeholder = "0.0" })
+
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-2 p-3">
+                @if (Model.IdEmisor != 0)
+                {
+
+                    <input type="submit" class="btn btn-info" value="Actualizar" />
+                }
+                else
+                {
+                    <input type="submit" class="btn btn-success" value="Guardar" />
+                }
+            </div>
+            <div class="col-md-2 p-3">
+
+                <a href="@Url.Action("GetAll", "Emisor")" class="btn btn-danger">Cancelar</a>
+            </div>
+        </div>
+    </div>
+
+
+}
+
